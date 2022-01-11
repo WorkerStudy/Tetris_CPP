@@ -222,6 +222,7 @@ public:
                printf("        GAME OVER\n");
                printf("        SCORE: %d", score);
                Sleep(4000);
+               score = 0;
                system("cls");
        return true;
    }
@@ -275,7 +276,6 @@ public:
            if (GetAsyncKeyState(VK_RIGHT)) { dx += 1; }
            if (GetAsyncKeyState(VK_DOWN)) { dy += 1; }
            if (GetAsyncKeyState(VK_UP)) { scn->Rotaite(massi); }
-
            scn->MoveFig(massi, dx, dy);
            scn->Draw();
            Sleep(10);
@@ -283,18 +283,21 @@ public:
            dx = 0;
            dy = 0;
            //
+          
+
+
+           if (!scn->MoveDown(massi) && (clock() - start) >= 500) {
+               figura->NewFig(massi);
+               
+               if (!scn->CheckLine(massi)) {
+                   scn->EndGame();
+               }
+           }
+
            if ((clock() - start) >= 500) {
 
                start = clock();
                scn->MoveFig(massi, dx, dy + 1);
-           }
-
-
-           if (!scn->MoveDown(massi)) {
-               figura->NewFig(massi);
-               if (!scn->CheckLine(massi)) {
-                   scn->EndGame();
-               }
            }
 
            if (GetAsyncKeyState(VK_ESCAPE)) {

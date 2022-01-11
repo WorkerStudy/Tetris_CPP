@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\MVC++\sss\TETRA\Debug\TETRA.exe</FullPath>
+      <FullPath>D:\MVC++\tetris\TETRA\Tetris_CPP\Debug\TETRA.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
