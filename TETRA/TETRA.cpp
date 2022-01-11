@@ -272,13 +272,15 @@ public:
 
    bool Game() {
        while (1) {
+          
            if (GetAsyncKeyState(VK_LEFT)) { dx += -1; }
            if (GetAsyncKeyState(VK_RIGHT)) { dx += 1; }
            if (GetAsyncKeyState(VK_DOWN)) { dy += 1; }
-           if (GetAsyncKeyState(VK_UP)) { scn->Rotaite(massi); }
+           
            scn->MoveFig(massi, dx, dy);
            scn->Draw();
-           Sleep(10);
+           Sleep(100);
+           if (GetAsyncKeyState(VK_UP)) { scn->Rotaite(massi); }
            system("cls");
            dx = 0;
            dy = 0;
@@ -286,7 +288,7 @@ public:
           
 
 
-           if (!scn->MoveDown(massi) && (clock() - start) >= 500) {
+           if (!scn->MoveDown(massi) && (clock() - start) >= 550) {
                figura->NewFig(massi);
                
                if (!scn->CheckLine(massi)) {
@@ -294,7 +296,7 @@ public:
                }
            }
 
-           if ((clock() - start) >= 500) {
+           if ((clock() - start) >= 550) {
 
                start = clock();
                scn->MoveFig(massi, dx, dy + 1);
@@ -310,71 +312,15 @@ public:
 
 int main()
 {
-    /*int figures[7][4] =
-    {
-        1,3,5,7, // I
-        2,4,5,7, // S
-        3,5,4,6, // Z
-        3,5,4,7, // T
-        2,3,5,7, // L
-        3,5,7,6, // J
-        2,3,4,5, // O
-    };
-    int x=2, y = -2, dx=0,dy=0;
-    int n = 4; // задаем тип тетрамино
-    int massi[4][2] = { 0 }; //0-x 1-y
-    //Переводим в обычные координаты
-    for (int i = 0; i < 4; i++)
-    {
-        massi[i][0] = x+figures[n][i] % 2;
-        massi[i][1] = y+figures[n][i] / 2;
-    }
-
-    std::cout << "Hello World!\n";
-    Screen *scn = new Screen;
-    GameLogic *game = new GameLogic();
-    Figura* figura = new Figura;
-    figura->NewFig(massi);
-    */
+    system("mode con cols=67 lines=63");
+    system("TITLE TETRIS C++");
 
     GameLogic* game = new GameLogic();
     game->Game();
-    //while (1) {
-        
-       // !game->Game();
-        
-        /*
-        if (GetAsyncKeyState(VK_LEFT)) { dx+= -1; }
-        if (GetAsyncKeyState(VK_RIGHT)) { dx += 1; }
-        if (GetAsyncKeyState(VK_DOWN)) { dy += 1; }
-        if (GetAsyncKeyState(VK_UP)) { scn->Rotaite(massi); }
 
+        //system("mode con cols=40 lines=65");
+       // std::cin.get();
 
-        scn->MoveFig(massi, dx, dy+1);
-        scn->Draw();
-        Sleep(10);
-        system("cls");
-        dx = 0;
-        dy = 0;
-       
-        if (!scn->MoveDown(massi)) {
-            x = 2; y = -2;
-            n = rand() % 7;
-            figura->NewFig(massi);
-            //Переводим в обычные координаты
-           // for (int i = 0; i < 4; i++)
-          //  {
-          //      massi[i][0] = x + figures[n][i] % 2;
-          //      massi[i][1] = y + figures[n][i] / 2;
-           // }
-
-            if (!scn->CheckLine(massi)) {
-                scn->EndGame();
-            }
-        }
-        */
-        
-   // }
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
